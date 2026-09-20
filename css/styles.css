@@ -338,3 +338,14 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .nav ul { flex: 1; justify-content: flex-end; }
 .btn svg { margin-right: 0; }
 @media (max-width: 860px) { .nav ul { justify-content: flex-start; } }
+
+/* ---------- at-a-glance result bars ---------- */
+.bars { display: grid; gap: 10px; margin-top: 18px; max-width: 620px; }
+.bar { display: grid; grid-template-columns: 200px 1fr 56px; gap: 14px; align-items: center; font-size: 14.5px; }
+.bar i { display: block; height: 10px; background: var(--bg); border: 1px solid var(--line); }
+.bar u { display: block; height: 100%; background: var(--navy); transform-origin: left; animation: bar-grow 0.9s cubic-bezier(.2, .7, .2, 1) both; }
+.bar:first-child u { background: var(--blue); }
+.bar b { font: 500 13.5px var(--mono); color: var(--navy); text-align: right; }
+@keyframes bar-grow { from { transform: scaleX(0); } }
+@media (max-width: 560px) { .bar { grid-template-columns: 1fr 56px; } .bar span { grid-column: 1 / -1; } }
+@media (prefers-reduced-motion: reduce) { .bar u { animation: none; } }

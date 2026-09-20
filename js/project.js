@@ -31,6 +31,9 @@
       <div class="main">
         ${e.shots && e.shots.length ? `<div class="shots reveal">${e.shots.map((s) => `<img src="${s}" alt="${esc(e.title)} screenshot" loading="lazy">`).join("")}</div>` : ""}
         ${e.demo ? `<div class="reveal" id="demo-slot"></div>` : ""}
+        ${e.glance ? `<div class="card block glance reveal"><h2>At a glance</h2><p>${esc(e.glance.text)}</p>
+          <div class="bars">${e.glance.bars.map((b) => `<div class="bar"><span>${esc(b.label)}</span><i><u style="width:${b.value}%"></u></i><b>${b.value.toFixed(1)}%</b></div>`).join("")}</div>
+          <p class="demo-note">${esc(e.glance.note)}</p></div>` : ""}
         ${block("The problem", para(e.problem))}
         ${block("How it works", list(e.details))}
         ${e.deliverables ? block("What I built", `<div class="deliv">${e.deliverables.map((d) => `<div><b>${esc(d.name)}</b>${esc(d.text)}</div>`).join("")}</div>`) : ""}
