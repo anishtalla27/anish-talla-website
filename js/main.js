@@ -6,6 +6,7 @@
   $("#p-tagline").textContent = PROFILE.tagline;
   $("#p-intro").textContent = PROFILE.intro;
   $("#p-school").textContent = PROFILE.school;
+  navGithub();
   contactButtons($("#hero-btns"), true);
   contactButtons($("#foot-btns"), true);
   if (window.mountHero) mountHero($("#hero-canvas"));
@@ -28,12 +29,13 @@
   rows.innerHTML = ENTRIES.map((e) => {
     const link = firstLink(e);
     const hay = [e.title, e.org, e.role, e.summary, e.status, ...(e.tech || [])].join(" ").toLowerCase();
-    return `<a class="row" href="project.html?id=${e.id}" data-cat="${e.category} ${(e.alsoIn || []).join(" ")}" data-hay="${esc(hay)}">
-      <div><div class="t">${esc(e.title)}</div><div class="c">${esc(CATEGORIES[e.category])}</div></div>
+    const k = link && KIND[link.kind];
+    return `<div class="row" data-cat="${e.category} ${(e.alsoIn || []).join(" ")}" data-hay="${esc(hay)}">
+      <div><a class="t" href="project.html?id=${e.id}">${esc(e.title)}</a><div class="c">${esc(CATEGORIES[e.category])}</div></div>
       <div class="s">${esc(e.summary)}</div>
-      <span class="stt">${esc((e.status || "").toLowerCase())}</span>
-      <span class="ev">${link ? esc({ code: "code", pr: "pull requests", live: "live site", doc: "evidence" }[link.kind] || "link") : e.privateCode ? "private" : ""}</span>
-    </a>`;
+      <span class="stt ${statusClass(e.status)}">${esc((e.status || "").toLowerCase())}</span>
+      ${k ? `<a class="ev ${k.cls}" href="${link.url}" ${extAttrs(link.url)}>${k.short} ↗</a>` : `<span class="ev"></span>`}
+    </div>`;
   }).join("") + `<div class="empty" hidden>No entries match.</div>`;
 
   let cat = "all", q = "";

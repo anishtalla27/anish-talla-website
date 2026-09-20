@@ -6,6 +6,7 @@
     root.innerHTML = `<div class="phead"><div class="wrap"><a class="back" href="index.html#index">← All work</a><h1>Entry not found</h1></div></div>`;
     return;
   }
+  navGithub();
   document.title = `${e.title} | Anish Talla`;
 
   const block = (title, body) => (body ? `<div class="card block reveal"><h2>${title}</h2>${body}</div>` : "");
@@ -13,8 +14,8 @@
   const para = (t) => (t ? `<p>${esc(t)}</p>` : "");
 
   const evidence = (e.evidence || []).length
-    ? `<ul class="evlist">${e.evidence.map((x) => `<li><span class="k">${esc({ code: "code", pr: "pr", live: "live", doc: "doc", note: "note" }[x.kind] || "")}</span>
-        ${x.url ? `<a href="${x.url}" ${x.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>${esc(x.label)}</a>` : `<span>${esc(x.label)}</span>`}</li>`).join("")}</ul>`
+    ? `<ul class="evlist">${e.evidence.map((x) => `<li><span class="k ${(KIND[x.kind] || {}).cls || ""}">${esc({ code: "code", pr: "pr", live: "live", doc: "doc", paper: "pdf", note: "note" }[x.kind] || "")}</span>
+        ${x.url ? `<a href="${x.url}" ${extAttrs(x.url)}>${esc(x.label)}</a>` : `<span>${esc(x.label)}</span>`}</li>`).join("")}</ul>`
     : `<p class="none">Nothing public to link yet. Email me and I can share more.</p>`;
 
   const others = ENTRIES.filter((x) => x.category === e.category && x.id !== e.id).slice(0, 4);

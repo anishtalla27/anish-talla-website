@@ -2,10 +2,24 @@
 const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// Text colors group entries by state: done, active, early, private.
+function statusClass(status) {
+  return { shipped: "c-done", completed: "c-done", ongoing: "c-active", "in progress": "c-active", submitted: "c-active",
+    prototype: "c-early", concept: "c-early", "private code": "c-private" }[(status || "").toLowerCase()] || "";
+}
+const KIND = {
+  code: { card: "code on GitHub", short: "code", cls: "k-code" },
+  pr: { card: "pull requests on GitHub", short: "pull requests", cls: "k-pr" },
+  live: { card: "live site", short: "live site", cls: "k-live" },
+  doc: { card: "evidence on GitHub", short: "evidence", cls: "k-doc" },
+  paper: { card: "paper (PDF)", short: "paper", cls: "k-paper" },
+};
+const extAttrs = (url) => (/^https?:|\.pdf$/.test(url) ? 'target="_blank" rel="noopener"' : "");
+
 // Status, role, org and dates read as one plain line of text.
 function metaLine(e) {
   const rest = [e.role, e.org, e.dates].filter(Boolean).map(esc).join(", ");
-  const st = e.status ? `<span class="st">${esc(e.status.toLowerCase())}</span>` : "";
+  const st = e.status ? `<span class="st ${statusClass(e.status)}">${esc(e.status.toLowerCase())}</span>` : "";
   return st + (st && rest ? " / " : "") + rest;
 }
 
@@ -15,24 +29,33 @@ function firstLink(e) {
   return (e.evidence || []).find((x) => x.url && !x.url.startsWith("project.html"));
 }
 
+// The whole card opens the project page (stretched "Read more" link); the evidence note is its own link.
 function cardHTML(e, i, big) {
   const link = firstLink(e);
-  const where = { code: "code on GitHub", pr: "pull requests on GitHub", live: "live site", doc: "evidence linked" };
+  const k = link && KIND[link.kind];
   return `
-  <a class="card reveal ${big ? "big" : ""}" style="--d:${(i % 3) * 70}ms" href="project.html?id=${e.id}">
+  <article class="card reveal ${big ? "big" : ""}" style="--d:${(i % 3) * 70}ms">
     ${window.coverFor ? coverFor(e) : ""}
     <h3>${esc(e.title)}</h3>
     <div class="meta">${metaLine(e)}</div>
     <p class="sum">${esc(e.summary)}</p>
     ${stack(e.tech, big ? 8 : 5)}
-    <div class="more"><span class="go">Read more</span>${link ? `<span class="ext">${where[link.kind] || "link"}</span>` : ""}</div>
-  </a>`;
+    <div class="more"><a class="go" href="project.html?id=${e.id}" aria-label="Read more about ${esc(e.title)}">Read more</a>${k ? `<a class="ext ${k.cls}" href="${link.url}" ${extAttrs(link.url)}>${k.card} ↗</a>` : ""}</div>
+  </article>`;
+}
+
+const GH_ICON = '<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="true" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>';
+
+// Adds the GitHub mark and label to the top bar on every page.
+function navGithub() {
+  const wrap = document.querySelector(".nav .wrap");
+  if (wrap) wrap.insertAdjacentHTML("beforeend", `<a class="gh" href="${PROFILE.github}" target="_blank" rel="noopener">${GH_ICON}<span>GitHub</span></a>`);
 }
 
 function contactButtons(el, dark) {
   const alt = dark ? "ghost" : "light";
   el.innerHTML = `
-    <a class="btn primary" href="${PROFILE.github}" target="_blank" rel="noopener">GitHub ↗</a>
+    <a class="btn primary" href="${PROFILE.github}" target="_blank" rel="noopener">${GH_ICON}GitHub</a>
     <a class="btn ${alt}" data-resume href="${PROFILE.resume}" target="_blank" rel="noopener" hidden>Resume (PDF)</a>
     <a class="mail" href="mailto:${PROFILE.email}">${PROFILE.email}</a>`;
   // Only show the resume button once assets/resume.pdf actually exists.

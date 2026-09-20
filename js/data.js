@@ -1,7 +1,7 @@
 // All site content lives here. Edit this file to add or change entries.
 // category: experience | project | research | datasci | award
 // status:   Shipped | In progress | Prototype | Concept | Submitted | Private code | Completed | Ongoing
-// evidence kind: code | pr | live | doc | note
+// evidence kind: code | pr | live | doc | paper | note
 // cover: animated card art from js/covers.js. shots: ["assets/shots/x.png"] replaces it with real screenshots.
 const GH = "https://github.com/anishtalla27";
 
@@ -9,10 +9,10 @@ const PROFILE = {
   name: "Anish Talla",
   tagline: "High school engineering student exploring intelligent machines and computer engineering.",
   intro:
-    "I'm Anish, a student interested in software, robotics, and music. I work on tools for business operations, guitar learning, and my own daily workflow, and I study how computer-vision systems make grasping decisions. Outside those projects, I play classical and jazz guitar and teach programming and data science.",
+    "I'm Anish, a student interested in software, robotics, and AI hardware. I build tools for business operations, apps people actually use, and software for my own daily workflow, and I research how robots decide where and how hard to grip. I also teach programming and data science, and play classical and jazz guitar.",
   school: "Lightridge High School and the Academy of Engineering & Technology (Academies of Loudoun), Class of 2027",
   github: GH,
-  email: "anishtalla083@gmail.com",
+  email: "anish.talla99@gmail.com",
   resume: "assets/resume.pdf",
 };
 
@@ -97,7 +97,7 @@ const ENTRIES = [
       "Acknowledged in the online textbook, the Preceptor's Primer for Bayesian Data Science.",
     ],
     outcomes: [
-      "150+ students across three countries.",
+      "90+ students across three countries.",
       "Coordinated a team of 6 to 8 teaching fellows.",
     ],
     evidence: [
@@ -322,7 +322,10 @@ const ENTRIES = [
       "Follow-up audits compared ResNet18 and ResNet34 across multiple seeds and training budgets.",
     ],
     outcomes: ["Compared three approaches on 123 test images.", "Submitted to the Next Gen Scholar Research Paper Competition."],
-    evidence: [{ label: "Code", url: GH + "/Vision-Based-Grasping", kind: "code" }],
+    evidence: [
+      { label: "Code", url: GH + "/Vision-Based-Grasping", kind: "code" },
+      { label: "Manuscript (PDF)", url: "assets/papers/grasp-benchmark.pdf", kind: "paper" },
+    ],
   },
   {
     id: "adaptive-gripper",
@@ -348,7 +351,7 @@ const ENTRIES = [
       "Metrics: precision, recall, F1, false triggers, recovery success, response time, and damage rate.",
       "Influences include Romano et al., Calandra et al., and Van Wyk and Falco.",
     ],
-    evidence: [],
+    evidence: [{ label: "Research proposal and methods (PDF)", url: "assets/papers/adaptive-gripper.pdf", kind: "paper" }],
   },
   {
     id: "near-memory",
@@ -361,7 +364,7 @@ const ENTRIES = [
       "Early-stage research into the Von Neumann bottleneck: why memory bandwidth limits AI workloads and how near-memory computing addresses it.",
     tech: ["Computer architecture", "AI hardware"],
     details: ["This connects to what I want to study: AI hardware efficiency."],
-    evidence: [],
+    evidence: [{ label: "Research paper (PDF)", url: "assets/papers/near-memory.pdf", kind: "paper" }],
   },
   {
     id: "vex",
@@ -532,16 +535,6 @@ const ENTRIES = [
     status: "Completed",
     summary: "Selected by guitar audition in ninth grade.",
     tech: ["Classical guitar"],
-    details: [],
-    evidence: [],
-  },
-  {
-    id: "usaco",
-    title: "USACO",
-    category: "award",
-    status: "Ongoing",
-    summary: "Competitive programming practice and contests.",
-    tech: ["C++", "Algorithms"],
     details: [],
     evidence: [],
   },
