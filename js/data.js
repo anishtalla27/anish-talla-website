@@ -7,9 +7,9 @@ const GH = "https://github.com/anishtalla27";
 
 const PROFILE = {
   name: "Anish Talla",
-  tagline: "High school engineering student exploring intelligent machines and computer engineering.",
+  tagline: "High school engineering student building software and studying robotic systems.",
   intro:
-    "I'm Anish, a student interested in software, robotics, and AI hardware. I build tools for business operations, apps people actually use, and software for my own daily workflow, and I research how robots decide where and how hard to grip. I also teach programming and data science, and play classical and jazz guitar.",
+    "My work includes an iOS guitar app, operations tools for TrackMyShuttle, and research on robotic grasping. I also contribute to open-source data science education with Dr. David Kane, teach programming, and play classical and jazz guitar.",
   school: "Lightridge High School and the Academy of Engineering & Technology (Academies of Loudoun), Class of 2027",
   github: GH,
   email: "anish.talla99@gmail.com",
@@ -34,7 +34,7 @@ const ENTRIES = [
     org: "TrackMyShuttle",
     role: "Software Engineering Intern (paid)",
     dates: "Grades 11 to 12",
-    status: "Private code",
+    status: "Ongoing",
     featured: true,
     privateCode: true,
     demo: "sync",
@@ -69,43 +69,72 @@ const ENTRIES = [
       "Internal tools used across operations, support, and marketing teams.",
     ],
     evidence: [
+      { label: "Official TrackMyShuttle website", url: "https://trackmyshuttle.com/", kind: "live" },
       { label: "Source code is private (employer-owned). See the architecture notes and animation on this page.", kind: "note" },
     ],
   },
   {
     id: "kane-ppbds",
-    cover: "teach",
-    title: "Data Science with Dr. David Kane",
+    cover: "code",
+    title: "Data Science Internship with Dr. David Kane",
     category: "experience",
     alsoIn: ["datasci"],
     org: "PPBDS",
-    role: "Head Teaching Fellow and Data Science Intern",
+    role: "Data Science Intern",
     dates: "2025 to present",
     status: "Ongoing",
     featured: true,
-    summary:
-      "Worked with Dr. David Kane on data science education and open-source tutorial tooling. Served as a Head Teaching Fellow and contributed merged changes to the R package tutorial.helpers.",
-    problem:
-      "Students learn data science by running code on real data, not by memorizing definitions. The course needed tutorials, tooling, and a teaching team that made that possible at scale.",
-    contribution:
-      "My work had three parts: software development on shared R packages, curriculum built around interactive tutorials and real datasets, and leading the teaching team. tutorial.helpers is a shared package with several contributors. My contributions are the linked pull requests.",
-    tech: ["R", "testthat", "learnr tutorials", "Quarto", "tidymodels", "Git/GitHub", "Positron", "Discord"],
+    summary: "Contributed to Dr. David Kane's data science textbook, interactive R curriculum, and open-source tutorial tooling, including merged tests and editor-extension changes.",
+    problem: "The textbook and its tutorials needed reliable software and lessons that let students investigate real datasets through code.",
+    contribution: "Worked with Dr. David Kane on the Preceptor's Primer for Bayesian Data Science and its supporting curriculum and R packages. I reworked interactive lessons, wrote automated tests, and contributed editor tooling. The textbook and packages are collaborative projects; the linked pull requests show my specific software contributions.",
+    tech: ["R", "testthat", "learnr tutorials", "Quarto", "tidymodels", "Git/GitHub", "Positron"],
     details: [
-      "Software: wrote test cases for write_answers(), the function that collects student answers, and reworked the package's editor extension tooling. Both pull requests were merged by Dr. Kane in August 2025.",
-      "Curriculum: reworked lessons around interactive R tutorials and roughly 15 real datasets, moving from definitions toward students running code, investigating, and forming conclusions.",
-      "Leadership: progressed from Teaching Fellow to Head Teaching Fellow. Assigned fellows, ran homework workflows and quality control, managed the course Discord, held study halls, and reviewed code changes.",
-      "Acknowledged in the online textbook, the Preceptor's Primer for Bayesian Data Science.",
+      "Contributed to the textbook and reworked lessons around interactive R tutorials and roughly 15 real datasets, helping students move from definitions to running code and drawing conclusions.",
+      "Wrote test cases for write_answers(), the tutorial.helpers function that collects student answers. Dr. Kane merged this contribution in August 2025.",
+      "Reworked editor extension tooling in tutorial.helpers in a separate pull request, also merged in August 2025.",
+      "Worked within shared PPBDS repositories, reviewing changes and collaborating through GitHub.",
     ],
-    outcomes: [
-      "90+ students across three countries.",
-      "Coordinated a team of 6 to 8 teaching fellows.",
-    ],
+    outcomes: ["Acknowledged as a contributor in the Preceptor's Primer for Bayesian Data Science.", "Merged contributions to tutorial.helpers: answer-processing tests and editor-extension tooling."],
     evidence: [
-      { label: "Listed under Head Teaching Fellows (bootcamp staff page source)", url: "https://github.com/PPBDS/bootcamp/blob/master/staff.qmd", kind: "doc" },
+      { label: "Read the textbook", url: "https://ppbds.github.io/primer/", kind: "doc", primary: true },
+      { label: "My merged contributions", url: "https://github.com/PPBDS/tutorial.helpers/pulls?q=is%3Apr+is%3Amerged+author%3Aanishtalla27", kind: "pr", primary: true },
+      { label: "Textbook acknowledgments", url: "https://ppbds.github.io/primer/preamble.html#acknowledgements", kind: "doc" },
+      { label: "Kane's Data Science Course", url: "https://bootcamp.davidkane.info/", kind: "live" },
+      { label: "Textbook repository: PPBDS/primer", url: "https://github.com/PPBDS/primer", kind: "code" },
+      { label: "R package: PPBDS/tutorial.helpers", url: "https://github.com/PPBDS/tutorial.helpers", kind: "code" },
+      { label: "Textbook tutorials: PPBDS/primer.tutorials", url: "https://github.com/PPBDS/primer.tutorials", kind: "code" },
+      { label: "R for Data Science tutorials: PPBDS/r4ds.tutorials", url: "https://github.com/PPBDS/r4ds.tutorials", kind: "code" },
+      { label: "Editor tutorials: PPBDS/vscode.tutorials", url: "https://github.com/PPBDS/vscode.tutorials", kind: "code" },
       { label: "Merged PR #75: write_answers() test cases", url: "https://github.com/PPBDS/tutorial.helpers/pull/75", kind: "pr" },
       { label: "Merged PR #81: extension changes", url: "https://github.com/PPBDS/tutorial.helpers/pull/81", kind: "pr" },
-      { label: "All my tutorial.helpers pull requests", url: "https://github.com/PPBDS/tutorial.helpers/pulls?q=is%3Apr+author%3Aanishtalla27", kind: "pr" },
-      { label: "tutorial.helpers package", url: "https://github.com/PPBDS/tutorial.helpers", kind: "code" },
+      { label: "All PPBDS repositories", url: "https://github.com/orgs/PPBDS/repositories", kind: "code" },
+      { label: "My teaching-fellow role", url: "project.html?id=kane-teaching", kind: "doc" },
+    ],
+  },
+  {
+    id: "kane-teaching",
+    cover: "teach",
+    title: "Kane's Data Science Course",
+    category: "experience",
+    org: "Dr. David Kane",
+    role: "Head Teaching Fellow",
+    dates: "2025 to present",
+    status: "Ongoing",
+    summary: "Led a team of 6 to 8 teaching fellows supporting 90+ data science students across three countries through study halls, code review, and course support.",
+    contribution: "Progressed from Teaching Fellow to Head Teaching Fellow. I coordinated fellow assignments, supported students, managed the course Discord, and helped run homework review and quality control.",
+    tech: ["R", "Data science", "Code review", "Git/GitHub", "Discord"],
+    details: [
+      "Held study halls and helped students work through R code and data science questions.",
+      "Assigned teaching fellows and coordinated homework workflows, exceptions, and quality control.",
+      "Reviewed course materials and code changes with the teaching team.",
+    ],
+    outcomes: ["Supported 90+ students across three countries.", "Coordinated 6 to 8 teaching fellows."],
+    evidence: [
+      { label: "Visit the course website", url: "https://bootcamp.davidkane.info/", kind: "live", primary: true },
+      { label: "Head Teaching Fellow listing", url: "https://bootcamp.davidkane.info/staff.html", kind: "doc", primary: true },
+      { label: "Course repository: PPBDS/bootcamp", url: "https://github.com/PPBDS/bootcamp", kind: "code" },
+      { label: "Course textbook", url: "https://ppbds.github.io/primer/", kind: "doc" },
+      { label: "My separate data science internship", url: "project.html?id=kane-ppbds", kind: "doc" },
     ],
   },
   {
@@ -127,7 +156,7 @@ const ENTRIES = [
       "Working with kids who run real lemonade-stand-scale businesses shaped LaunchPad's Pricing Lab and feedback tools.",
     ],
     outcomes: ["10+ students mentored individually.", "Platform audience of 40+ young entrepreneurs."],
-    evidence: [{ label: "LaunchPad project page", url: "project.html?id=launchpad", kind: "doc" }],
+    evidence: [{ label: "LaunchPad project page", url: "project.html?id=launchpad", kind: "doc" }, { label: "Official Little CEOs Foundation website", url: "https://littleceos.org/", kind: "live" }],
   },
   {
     id: "coderschool",
@@ -142,7 +171,7 @@ const ENTRIES = [
     contribution: "Plan and teach weekly sessions, adjusting projects to each student's level.",
     tech: ["Python", "Java", "JavaScript", "HTML", "Scratch"],
     details: ["Small-group format means every student ships their own project instead of copying one from the board."],
-    evidence: [],
+    evidence: [{ label: "Official Ashburn school website", url: "https://www.thecoderschool.com/locations/ashburn/", kind: "live" }],
   },
 
   // ---------------------------------------------------------------- PROJECTS
@@ -170,7 +199,7 @@ const ENTRIES = [
       "Photo-to-tab scanning was explored and cut. It did not meet my reliability bar, so it did not ship.",
     ],
     outcomes: ["Released on the App Store, version 1.0.0 (September 2026)."],
-    evidence: [{ label: "Source code", url: GH + "/StringMap", kind: "code" }],
+    evidence: [{ label: "View on the App Store", url: "https://apps.apple.com/us/app/stringmap/id6809277270", kind: "live" }, { label: "Source code", url: GH + "/StringMap", kind: "code" }],
   },
   {
     id: "launchpad",
@@ -183,7 +212,7 @@ const ENTRIES = [
     status: "Shipped",
     featured: true,
     summary:
-      "A web platform where young entrepreneurs (roughly ages 8 to 14) price products, track their business, and get AI coaching. Earlier name: PriceIt.",
+      "A web platform where young entrepreneurs (roughly ages 8 to 14) price products, track their business, and get AI coaching.",
     problem: "Kids selling at markets and fairs rarely know if they are making money. They need tools sized for them, not a spreadsheet.",
     contribution: "Led development through LittleCEOs, including frontend, mobile responsiveness, branding, and deployment.",
     tech: ["Vite", "React", "TypeScript", "Tailwind", "shadcn/ui", "React Router", "OpenRouter / Gemini", "Vercel"],
@@ -210,7 +239,7 @@ const ENTRIES = [
     contribution: "Built the Swift app, including the object detector and voice manager components.",
     tech: ["Swift", "CoreML", "YOLO", "Speech"],
     details: ["YOLO models converted to CoreML run detection on device, and a voice manager handles spoken interaction."],
-    evidence: [{ label: "Source code (42 commits)", url: GH + "/VisionAssist", kind: "code" }],
+    evidence: [{ label: "Source code", url: GH + "/VisionAssist", kind: "code" }],
   },
   {
     id: "meeting-transcriber",
@@ -244,14 +273,14 @@ const ENTRIES = [
   {
     id: "grasp-benchmark",
     cover: "grasprect",
-    title: "Three Ways to Miss a Grasp",
+    title: "Robotic Grasp Prediction: Deep Learning vs. Vision-Language Models",
     category: "research",
     role: "Sole author",
     dates: "2026",
     status: "Submitted",
     featured: true,
     summary:
-      "Which is better at telling a robot where to grasp: hand-written rules, a trained neural network, or GPT-4o? I tested all three on the same images with the same scoring.",
+      "Designed a controlled benchmark comparing rule-based vision, deep learning, and GPT-4o for robotic grasp prediction. Evaluated generalization to unseen objects, quantified uncertainty, and analyzed failure modes to identify where each approach succeeds and breaks down.",
     glance: {
       text: "The trained network was correct 84% of the time, the rules 58%, and GPT-4o 12%. A follow-up experiment showed GPT-4o's problem is choosing the grasp, not writing coordinates.",
       bars: [
@@ -266,7 +295,7 @@ const ENTRIES = [
     contribution: "Solo project. I designed the protocol, built all four systems, ran the experiments and statistics, and wrote the paper through three revision rounds.",
     tech: ["Python", "PyTorch", "ResNet", "Faster R-CNN", "GPT-4o", "Cornell Grasping Dataset", "Clustered bootstrap", "LaTeX"],
     details: [
-      "Full title: Three Ways to Miss a Grasp: A Same-Metric Comparison of Rule-Based, Learned, and Zero-Shot Vision-Language Grasp Prediction.",
+      "Paper title: Three Ways to Miss a Grasp: A Same-Metric Comparison of Rule-Based, Learned, and Zero-Shot Vision-Language Grasp Prediction.",
       "Every system gets the same 123 test images, returns the same grasp rectangle, and is scored by one implementation of the standard Cornell rectangle test.",
       "The dataset has no object IDs, so I reconstructed them to keep every physical object in only one of train, validation, or test. Statistics are computed over the 35 test objects, not over images, which widens the confidence intervals honestly.",
       "A shared failure taxonomy shows each system breaks at a different stage: the rules miss on angle, the network on placement and sizing, and GPT-4o puts more than half of its grasp centers outside the labeled region.",
@@ -294,7 +323,7 @@ const ENTRIES = [
     featured: false,
     demo: "gripper",
     summary:
-      "AET engineering research: a low-cost gripper that uses vision to set its initial grip, force and vibration sensing to detect slip, and real-time recovery.",
+      "Designing a low-cost gripper to combine vision, force sensing, and vibration feedback for slip detection and recovery.",
     problem:
       "Can inexpensive force and vibration feedback detect slip at or before visible motion, and start correcting within 200 milliseconds? That number is the target, not a result.",
     contribution: "Designing the apparatus, experiment, and analysis. Literature review, methods, bill of materials, and schedule planning are done.",
@@ -306,7 +335,7 @@ const ENTRIES = [
       "Metrics: precision, recall, F1, false triggers, recovery success, response time, and damage rate.",
       "Influences include Romano et al., Calandra et al., and Van Wyk and Falco.",
     ],
-    evidence: [{ label: "Research proposal and methods (PDF)", url: "assets/papers/adaptive-gripper.pdf", kind: "paper" }],
+    evidence: [{ label: "Research proposal and methods: draft available on request.", kind: "note" }],
   },
   {
     id: "near-memory",
@@ -319,7 +348,7 @@ const ENTRIES = [
       "Early-stage research into the Von Neumann bottleneck: why memory bandwidth limits AI workloads and how near-memory computing addresses it.",
     tech: ["Computer architecture", "AI hardware"],
     details: ["This connects to what I want to study: AI hardware efficiency."],
-    evidence: [{ label: "Research paper (PDF)", url: "assets/papers/near-memory.pdf", kind: "paper" }],
+    evidence: [{ label: "Research write-up: draft available on request.", kind: "note" }],
   },
   {
     id: "vex",
@@ -328,7 +357,7 @@ const ENTRIES = [
     category: "research",
     role: "Autonomous programmer",
     status: "Ongoing",
-    summary: "Program autonomous routines and motion control for a VEX V5 competition robot. State qualification reported.",
+    summary: "Program autonomous routines and motion control for a VEX V5 competition robot.",
     tech: ["C++", "PROS", "LemLib", "LVGL"],
     details: ["Drivetrain and motion control, hardware integration, and a lot of iterative testing on the field."],
     evidence: [],
@@ -343,7 +372,7 @@ const ENTRIES = [
     summary: "Saturday program coursework on autonomous vehicles using the RACECAR platform, about 5 to 6 hours per week.",
     tech: ["Python", "Computer vision", "Motion planning", "Control"],
     details: ["Topics: navigation, control, computer vision, motion planning, and probabilistic reasoning."],
-    evidence: [],
+    evidence: [{ label: "Official MIT RACECAR program", url: "https://racecar.mit.edu/", kind: "live" }],
   },
   {
     id: "weather-balloon",
@@ -375,22 +404,22 @@ const ENTRIES = [
       "Win probabilities from logistic regression feed rankings and matchup predictions.",
       "Includes calibration, robustness, and reproducibility checks so every output can be regenerated.",
     ],
-    evidence: [{ label: "Source code", url: GH + "/WhartonDataScience", kind: "code" }],
+    evidence: [{ label: "Source code", url: GH + "/WhartonDataScience", kind: "code" }, { label: "Official Wharton competition and challenge", url: "https://wsb.wharton.upenn.edu/wharton-data-competition/about/", kind: "live" }],
   },
   {
     id: "tutorial-forks",
     cover: "code",
-    title: "Tutorial and curriculum repositories",
+    title: "PPBDS tutorial and curriculum repositories",
     category: "datasci",
     status: "Ongoing",
-    summary: "Working forks of the PPBDS teaching packages used for my curriculum contributions. These are forks of shared projects, not original repositories.",
+    summary: "Shared PPBDS teaching packages supporting interactive R lessons. My internship page links to my contributions; these repositories provide the broader project context.",
     tech: ["R", "learnr", "Quarto"],
     details: [],
     evidence: [
-      { label: "primer.tutorials (fork)", url: GH + "/primer.tutorials", kind: "code" },
-      { label: "r4ds.tutorials (fork)", url: GH + "/r4ds.tutorials", kind: "code" },
-      { label: "vscode.tutorials (fork)", url: GH + "/vscode.tutorials", kind: "code" },
-      { label: "ATbootcamp (fork)", url: GH + "/ATbootcamp", kind: "code" },
+      { label: "PPBDS/primer.tutorials", url: "https://github.com/PPBDS/primer.tutorials", kind: "code" },
+      { label: "PPBDS/r4ds.tutorials", url: "https://github.com/PPBDS/r4ds.tutorials", kind: "code" },
+      { label: "PPBDS/vscode.tutorials", url: "https://github.com/PPBDS/vscode.tutorials", kind: "code" },
+      { label: "PPBDS/bootcamp", url: "https://github.com/PPBDS/bootcamp", kind: "code" },
     ],
   },
   {
@@ -404,16 +433,6 @@ const ENTRIES = [
     tech: ["R"],
     details: [],
     evidence: [{ label: "Repository is private", kind: "note" }],
-  },
-  {
-    id: "m3",
-    title: "M3 Challenge",
-    category: "datasci",
-    status: "Completed",
-    summary: "Team math-modeling paper on online-gambling harm, built around a Gambling Burden Ratio framework and written in LaTeX.",
-    tech: ["Mathematical modeling", "LaTeX"],
-    details: [],
-    evidence: [],
   },
   {
     id: "tsa-geospatial",
@@ -430,7 +449,8 @@ const ENTRIES = [
   {
     id: "case-competition",
     cover: "medal",
-    title: "Global Case Competition: 1st place worldwide",
+    title: "Harvard Crimson Global Case Competition: 1st place worldwide",
+    dates: "2025",
     category: "award",
     role: "Team PowerPoint Rangers (North America)",
     status: "Completed",
@@ -441,17 +461,21 @@ const ENTRIES = [
       "The prize included a $1,500 grand prize and work experience with EY.",
     ],
     tech: ["Strategy", "Financial analysis", "Presenting"],
-    evidence: [],
+    evidence: [
+      { label: "2025 winners: my team and name", url: "https://www.casecomp.org/winning-teams-2025", kind: "doc", primary: true },
+      { label: "Our winning case solution", url: "https://www.casecomp.org/top-case-solutions-2025", kind: "doc", primary: true },
+      { label: "Official HCGCC website", url: "https://www.casecomp.org/", kind: "live" },
+    ],
   },
   {
     id: "ey",
     title: "EY Work Experience",
-    category: "award",
+    category: "experience",
     status: "Completed",
-    summary: "Consulting and professional-development work, including an autonomous-driving strategy exercise for Rivian presented to EY partners.",
+    summary: "Consulting and professional-development work earned through the Global Case Competition, including an autonomous-driving strategy exercise for Rivian presented to EY partners.",
     tech: ["Consulting", "NPV analysis"],
     details: [],
-    evidence: [],
+    evidence: [{ label: "Related competition: 2025 winners", url: "https://www.casecomp.org/winning-teams-2025", kind: "doc" }],
   },
   {
     id: "cyber-cup",
@@ -461,7 +485,7 @@ const ENTRIES = [
     summary: "First in the 9th/10th-grade division and fourth overall in Virginia.",
     tech: ["Cybersecurity"],
     details: [],
-    evidence: [],
+    evidence: [{ label: "Official Virginia HS Cyber Cup website", url: "https://sites.google.com/vt.edu/commonwealth-cyber-cup/home", kind: "live" }],
   },
   {
     id: "fbla",
@@ -471,7 +495,7 @@ const ENTRIES = [
     summary: "Second place at the state level. National qualifier and attendee.",
     tech: [],
     details: [],
-    evidence: [],
+    evidence: [{ label: "Official Virginia FBLA website", url: "https://www.vafbla.org/", kind: "live" }],
   },
   {
     id: "tsa-software",
@@ -485,15 +509,17 @@ const ENTRIES = [
   },
   {
     id: "pavan",
-    title: "PAVAN Governor's School for the Arts",
+    title: "PAVAN Regional Governor's School for the Arts",
     category: "award",
     status: "Completed",
     summary: "Selected by guitar audition in ninth grade.",
     tech: ["Classical guitar"],
     details: [],
-    evidence: [],
+    evidence: [{ label: "Official PAVAN program website", url: "https://pavangsa.org/", kind: "live" }],
   },
 ];
+
+const FEATURED_ORDER = ["stringmap", "grasp-benchmark", "trackmyshuttle", "kane-ppbds", "launchpad", "wharton"];
 
 const SKILLS = [
   { area: "Languages", items: ["Python", "R", "Java", "JavaScript", "TypeScript", "Swift", "C++", "Arduino C++", "SQL", "HTML/CSS"] },

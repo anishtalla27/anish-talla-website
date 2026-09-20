@@ -26,7 +26,10 @@ Everything on the site is generated from `js/data.js`. Each entry looks like:
 
 - Screenshots: drop images in `assets/shots/` and list them in `shots`. The first one becomes the card image and all of them appear on the project page.
 - Resume: save a PDF as `assets/resume.pdf`. The Resume button appears on its own once the file exists.
-- Interactive demos live in `js/anim/` (hero circuit board, fretboard solver, gripper, sync pipeline).
+- Cards only show Read more when the detail page has additional content or multiple evidence links. Simple entries link directly to their evidence when available.
+- Featured order is set by `FEATURED_ORDER` in `js/data.js`. Category sections use compact cards with the same artwork.
+- Interactive demos live in `js/anim/` (hero circuit board, fretboard solver, gripper, sync pipeline). Full demos appear on their project pages.
+- Dr. Kane's internship (`kane-ppbds`) and teaching-fellow role (`kane-teaching`) are separate entries with reciprocal links.
 
 ## Deploy to GitHub Pages
 

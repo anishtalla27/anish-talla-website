@@ -157,7 +157,7 @@ section.alt { background: #fff; border-block: 1px solid var(--line); }
 .row { position: relative; }
 .row:hover { background: #f8fafe; }
 .row .t { font-weight: 600; color: var(--navy); }
-.row .t::after { content: ""; position: absolute; inset: 0; }
+.row a.t::after { content: ""; position: absolute; inset: 0; }
 .row .t:hover { text-decoration: none; }
 .row a.ev { position: relative; z-index: 1; }
 .row .c { font-size: 12.5px; color: var(--muted); }
@@ -366,3 +366,32 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .row:hover .t { color: var(--blue); }
 .row { cursor: pointer; }
 .phead .btns { margin-top: 26px; }
+
+/* Compact repeats retain the original card surfaces and animated illustrations. */
+.entry-list { display: grid; gap: 16px; }
+.card.compact { display: grid; grid-template-columns: 160px minmax(0, 1fr); gap: 24px; align-items: center; }
+.card.compact .cover { margin: 0; border: 1px solid var(--line); border-radius: var(--radius); }
+.card.compact .cover svg { height: 110px; }
+.card.compact .card-copy { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.card.compact:not(:has(.cover)) { grid-template-columns: 1fr; }
+.card.compact .more { padding-top: 2px; }
+.browse-all { margin-top: 24px; font-weight: 600; }
+.nav-toggle { display: none; }
+@media (max-width: 860px) {
+  .nav .brand { display: block; }
+  .nav-toggle { display: inline-flex; margin-left: auto; background: transparent; color: #fff; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 4px; padding: 7px 12px; font: 600 14px "IBM Plex Sans", sans-serif; cursor: pointer; }
+  .nav.scrolled .nav-toggle, .nav.solid .nav-toggle, .nav.menu-open .nav-toggle { color: var(--navy); border-color: var(--navy); }
+  .nav ul { display: none; }
+  .nav.menu-open { background: var(--card); }
+  .nav.menu-open .brand, .nav.menu-open .gh { color: var(--navy); }
+  .nav.menu-open .gh { border-color: var(--navy); }
+  .nav.menu-open ul { display: grid; grid-template-columns: 1fr 1fr; position: absolute; inset: 60px 0 auto; padding: 16px; background: var(--card); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-lift); }
+  .nav.menu-open li a { color: var(--navy); }
+  .nav.menu-open li a:hover { background: var(--blue-soft); }
+  .card.compact { grid-template-columns: 100px minmax(0, 1fr); gap: 16px; }
+  .card.compact .cover svg { height: 90px; }
+}
+@media (max-width: 560px) {
+  .card.compact { grid-template-columns: 1fr; }
+  .card.compact .cover { display: none; }
+}

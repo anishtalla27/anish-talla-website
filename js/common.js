@@ -11,7 +11,7 @@ const KIND = {
   code: { card: "code on GitHub", short: "code", cls: "k-code" },
   pr: { card: "pull requests on GitHub", short: "pull requests", cls: "k-pr" },
   live: { card: "live site", short: "live site", cls: "k-live" },
-  doc: { card: "evidence on GitHub", short: "evidence", cls: "k-doc" },
+  doc: { card: "view evidence", short: "evidence", cls: "k-doc" },
   paper: { card: "paper (PDF)", short: "paper", cls: "k-paper" },
 };
 const extAttrs = (url) => (/^https?:|\.pdf$/.test(url) ? 'target="_blank" rel="noopener"' : "");
@@ -29,18 +29,35 @@ function firstLink(e) {
   return (e.evidence || []).find((x) => x.url && !x.url.startsWith("project.html"));
 }
 
+// Only offer a detail page when it contains material beyond the card summary.
+function hasMoreContent(e) {
+  return Boolean(e.problem || e.contribution || e.demo || e.glance ||
+    (e.details || []).length || (e.outcomes || []).length ||
+    (e.deliverables || []).length || (e.shots || []).length ||
+    (e.evidence || []).filter((x) => x.url).length > 1);
+}
+
+function entryDestination(e) {
+  if (hasMoreContent(e)) return `project.html?id=${e.id}`;
+  const link = firstLink(e);
+  return link ? link.url : null;
+}
+
 // The whole card opens the project page (stretched "Read more" link); the evidence note is its own link.
-function cardHTML(e, i, big) {
+function cardHTML(e, i, big, compact = false) {
   const link = firstLink(e);
   const k = link && KIND[link.kind];
+  const more = hasMoreContent(e);
   return `
-  <article class="card reveal ${big ? "big" : ""}" style="--d:${(i % 3) * 70}ms">
+  <article class="card reveal ${big ? "big" : ""} ${compact ? "compact" : ""}" style="--d:${(i % 3) * 70}ms">
     ${window.coverFor ? coverFor(e) : ""}
+    ${compact ? '<div class="card-copy">' : ""}
     <h3>${esc(e.title)}</h3>
     <div class="meta">${metaLine(e)}</div>
     <p class="sum">${esc(e.summary)}</p>
-    ${stack(e.tech, big ? 8 : 5)}
-    <div class="more"><a class="go" href="project.html?id=${e.id}" aria-label="Read more about ${esc(e.title)}">Read more <span aria-hidden="true">→</span></a>${k ? `<a class="ext ${k.cls}" href="${link.url}" ${extAttrs(link.url)}>${k.card} ↗</a>` : ""}</div>
+    ${compact ? "" : stack(e.tech, big ? 8 : 5)}
+    ${more || k ? `<div class="more">${more ? `<a class="go" href="project.html?id=${e.id}" aria-label="Read more about ${esc(e.title)}">Read more <span aria-hidden="true">→</span></a>` : ""}${k ? `<a class="ext ${k.cls}" href="${link.url}" ${extAttrs(link.url)}>${esc(link.label)} ↗</a>` : ""}</div>` : ""}
+    ${compact ? "</div>" : ""}
   </article>`;
 }
 
@@ -50,12 +67,39 @@ const GH_ICON = '<svg viewBox="0 0 16 16" width="18" height="18" aria-hidden="tr
 function navGithub() {
   const wrap = document.querySelector(".nav .wrap");
   if (wrap) wrap.insertAdjacentHTML("beforeend", `<a class="gh" href="${PROFILE.github}" target="_blank" rel="noopener">${GH_ICON}<span>GitHub</span></a>`);
+  const nav = document.querySelector(".nav");
+  const links = nav && nav.querySelector("ul");
+  if (!links) return;
+  links.id = "nav-links";
+  const toggle = document.createElement("button");
+  toggle.className = "nav-toggle";
+  toggle.type = "button";
+  toggle.textContent = "Menu";
+  toggle.setAttribute("aria-expanded", "false");
+  toggle.setAttribute("aria-controls", links.id);
+  wrap.insertBefore(toggle, links);
+  function closeMenu() {
+    nav.classList.remove("menu-open");
+    toggle.setAttribute("aria-expanded", "false");
+    toggle.textContent = "Menu";
+  }
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("menu-open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.textContent = open ? "Close" : "Menu";
+  });
+  links.addEventListener("click", (event) => { if (event.target.closest("a")) closeMenu(); });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && nav.classList.contains("menu-open")) { closeMenu(); toggle.focus(); }
+  });
+  document.addEventListener("click", (event) => { if (!nav.contains(event.target)) closeMenu(); });
 }
 
 function contactButtons(el, dark) {
   const alt = dark ? "ghost" : "light";
   el.innerHTML = `
-    <a class="btn primary" href="${PROFILE.github}" target="_blank" rel="noopener">${GH_ICON}GitHub</a>
+    ${el.id === "hero-btns" ? '<a class="btn primary" href="#index">Browse all work</a>' : ""}
+    <a class="btn ${el.id === "hero-btns" ? alt : "primary"}" href="${PROFILE.github}" target="_blank" rel="noopener">${GH_ICON}GitHub</a>
     <a class="btn ${alt}" data-resume href="${PROFILE.resume}" target="_blank" rel="noopener" hidden>Resume (PDF)</a>
     <a class="mail" href="mailto:${PROFILE.email}">${PROFILE.email}</a>`;
   // Only show the resume button once assets/resume.pdf actually exists.

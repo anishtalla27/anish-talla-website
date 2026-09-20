@@ -19,12 +19,13 @@
     : `<p class="none">Nothing public to link yet. Email me and I can share more.</p>`;
 
   // The main evidence links also sit in the header as buttons, so they are hard to miss.
-  const verbs = { paper: "Read the paper (PDF)", code: "View the code on GitHub", live: "Open the live site", pr: "See the pull requests", doc: "See the evidence" };
   const seen = new Set();
-  const main = (e.evidence || []).filter((x) => x.url && /^(https?:|assets\/)/.test(x.url) && !seen.has(x.kind) && seen.add(x.kind)).slice(0, 2);
-  const actions = main.length ? `<div class="btns">${main.map((x, i) => `<a class="btn ${i ? "ghost" : "primary"}" href="${x.url}" ${extAttrs(x.url)}>${verbs[x.kind] || esc(x.label)} ↗</a>`).join("")}</div>` : "";
+  const linked = (e.evidence || []).filter((x) => x.url);
+  const preferred = linked.filter((x) => x.primary);
+  const main = preferred.length ? preferred : linked.filter((x) => !seen.has(x.kind) && seen.add(x.kind)).slice(0, 2);
+  const actions = main.length ? `<div class="btns">${main.map((x, i) => `<a class="btn ${i ? "ghost" : "primary"}" href="${x.url}" ${extAttrs(x.url)}>${esc(x.label)} ↗</a>`).join("")}</div>` : "";
 
-  const others = ENTRIES.filter((x) => x.category === e.category && x.id !== e.id).slice(0, 4);
+  const others = ENTRIES.filter((x) => x.category === e.category && x.id !== e.id && entryDestination(x)).slice(0, 4);
 
   root.innerHTML = `
     <div class="phead"><div class="wrap">
@@ -36,6 +37,8 @@
     </div></div>
     <div class="wrap pbody">
       <div class="main">
+        ${block("My contribution", para(e.contribution))}
+        ${block("Results and status", list(e.outcomes))}
         ${e.shots && e.shots.length ? `<div class="shots reveal">${e.shots.map((s) => `<img src="${s}" alt="${esc(e.title)} screenshot" loading="lazy">`).join("")}</div>` : ""}
         ${e.demo ? `<div class="reveal" id="demo-slot"></div>` : ""}
         ${e.glance ? `<div class="card block glance reveal"><h2>At a glance</h2><p>${esc(e.glance.text)}</p>
@@ -44,13 +47,11 @@
         ${block("The problem", para(e.problem))}
         ${block("How it works", list(e.details))}
         ${e.deliverables ? block("What I built", `<div class="deliv">${e.deliverables.map((d) => `<div><b>${esc(d.name)}</b>${esc(d.text)}</div>`).join("")}</div>`) : ""}
-        ${block("My role", para(e.contribution))}
-        ${block("Outcomes", list(e.outcomes))}
       </div>
       <aside class="side">
-        <div class="card reveal"><h4>Evidence</h4>${evidence}</div>
+        <div class="card reveal"><h4>Evidence & links</h4>${evidence}</div>
         ${e.tech && e.tech.length ? `<div class="card reveal"><h4>Technologies</h4>${stack(e.tech)}</div>` : ""}
-        ${others.length ? `<div class="card reveal"><h4>More in ${esc(CATEGORIES[e.category])}</h4><ul class="evlist">${others.map((o) => `<li><a href="project.html?id=${o.id}">${esc(o.title)}</a></li>`).join("")}</ul></div>` : ""}
+        ${others.length ? `<div class="card reveal"><h4>More in ${esc(CATEGORIES[e.category])}</h4><ul class="evlist">${others.map((o) => `<li><a href="${entryDestination(o)}" ${extAttrs(entryDestination(o))}>${esc(o.title)}</a></li>`).join("")}</ul></div>` : ""}
       </aside>
     </div>`;
 

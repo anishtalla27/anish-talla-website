@@ -13,7 +13,7 @@ window.mountSync = function (el) {
     <div class="demo">
       <div class="demo-head">
         <div><div class="fig">FIG. 03 / TrackMyShuttle</div><h3>Keeping two databases honest</h3>
-        <p>The hub writes to PostgreSQL, but the business also lives in Airtable. A transactional outbox makes sure every change reaches Airtable exactly once, even when the API fails or a message is sent twice.</p></div>
+        <p>The hub writes to PostgreSQL, but the business also lives in Airtable. A transactional outbox queues changes for delivery to Airtable. Retries handle API failures, and idempotency checks prevent duplicate application.</p></div>
       </div>
       <svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Animated diagram of a transactional outbox syncing PostgreSQL to Airtable">
         ${wire(N.app, N.pg)}${wire(N.pg, N.wk)}${wire(N.wk, N.at)}
