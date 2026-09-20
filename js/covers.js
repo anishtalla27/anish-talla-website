@@ -123,6 +123,22 @@
         <path class="cv-ping" d="M136,80 Q160,58 184,80" fill="none" stroke="${A}" stroke-width="2"/>
         <path d="M140,80 Q160,64 180,80" fill="none" stroke="${A}" stroke-width="2"/>`;
     },
+    fanchart() {
+      // a point forecast with its widening 80% range, and the actual outcomes it has to catch
+      const xs = [40, 90, 140, 190, 240, 290];
+      const mid = [84, 76, 70, 62, 54, 46];
+      const hw = [6, 12, 18, 24, 30, 36];
+      const up = xs.map((x, i) => `${x},${mid[i] - hw[i]}`).join(" ");
+      const dn = xs.map((x, i) => `${x},${mid[i] + hw[i]}`).reverse().join(" ");
+      const hits = [[62, 82], [104, 70], [148, 60], [152, 82], [198, 50], [204, 74], [246, 40], [268, 62], [286, 30]];
+      return `
+        <line x1="40" x2="290" y1="120" y2="120" stroke="${L}" stroke-width="2"/>
+        <polygon points="${up} ${dn}" fill="${S}" stroke="${L}" stroke-width="1.5"/>
+        <polyline class="cv-draw" pathLength="1" points="${xs.map((x, i) => `${x},${mid[i]}`).join(" ")}" fill="none" stroke="${N}" stroke-width="2.5" stroke-linecap="round"/>
+        ${hits.map((d, i) => `<circle class="cv-pop" style="animation-delay:${0.3 + i * 0.09}s" cx="${d[0]}" cy="${d[1]}" r="4.5" fill="${B}"/>`).join("")}
+        <circle class="cv-pop" style="animation-delay:1.3s" cx="130" cy="96" r="4.5" fill="${A}"/>
+        <circle class="cv-pop" style="animation-delay:1.45s" cx="258" cy="14" r="4.5" fill="${A}"/>`;
+    },
     teach() {
       return `
         <rect x="60" y="16" width="200" height="76" rx="8" fill="${N}"/>

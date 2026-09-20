@@ -407,6 +407,53 @@ const ENTRIES = [
     evidence: [{ label: "Source code", url: GH + "/WhartonDataScience", kind: "code" }, { label: "Official Wharton competition and challenge", url: "https://wsb.wharton.upenn.edu/wharton-data-competition/about/", kind: "live" }],
   },
   {
+    id: "fourth-down",
+    cover: "fanchart",
+    title: "Fourth Down",
+    category: "datasci",
+    alsoIn: ["project"],
+    role: "Creator",
+    dates: "2026",
+    status: "Shipped",
+    featured: true,
+    summary:
+      "A weekly fantasy football decision engine for one Sleeper league. It forecasts every player's week with an uncertainty range, picks a legal lineup by win probability against the actual opponent, and ranks waiver adds by what they add to this roster over the rest of the season.",
+    problem:
+      "Fantasy advice is everywhere and almost none of it is scored. I wanted to know whether modeling workload and uncertainty actually beats trusting recent box scores, and by how much, measured out-of-sample before I let it touch my own lineup.",
+    contribution:
+      "Solo project. I set the evaluation protocol first, then built the data layer, features, models, and decision layer, and wrote the backtest report, including the parts that make the result look smaller than it sounds.",
+    tech: ["Python", "CatBoost", "nflverse / nflreadpy", "Sleeper API", "Integer programming", "Gaussian copula", "Bootstrap confidence intervals", "Streamlit", "pytest"],
+    glance: {
+      text: "On 38,674 close start/sit calls from the 2025 holdout, the model picked the higher scorer 56.2% of the time. Sleeper's own projections got 55.9%, and recent box scores 51.8%. The forecasting edge over consensus is real but small, and the report says so in those words.",
+      bars: [
+        { label: "Fourth Down", value: 56.2 },
+        { label: "Sleeper projections", value: 55.9 },
+        { label: "Recent form (EWMA)", value: 51.8 },
+      ],
+      note: "Same-position, same-week player pairs that the forecast rates within 3 points of each other. 50% is a coin flip.",
+    },
+    details: [
+      "Three forecast members per player: a CatBoost model on lagged usage (targets, carries, snap/target/air-yard share), team volume, opponent points allowed, Vegas implied totals, vacated usage from inactive teammates, and depth rank; Sleeper's projected stat components re-scored under this league's rules; and FantasyPros expert consensus rank mapped to points by a per-position monotone fit.",
+      "A non-negative stacker blends the members per position, but a gate decides whether the blend ships at all. It only replaces the best single member where it beat that member on the 2025 holdout with a week-block bootstrap 95% confidence interval excluding zero. It currently passes for RB, WR, and K; QB and TE fall back to Sleeper, and DEF to my own model. Saying no is most of what the gate does.",
+      "Ranges come from a model of absolute error, so volatile players get wider ones, plus empirical residual shapes by position and projection level. Observed 80% coverage on 2025 was 78 to 82%. No conformal guarantee is claimed, because weekly football data is not exchangeable.",
+      "Same-game correlation goes through a Gaussian copula, so a quarterback and his receivers, a defense and the opposing quarterback, and a kicker and his own defense move together in simulation instead of independently.",
+      "The decision layer is where most of the practical value sits: lineup choice as an integer program under legality and lock constraints, win-probability tie-breaks against the actual opponent's roster, waiver values measured as rest-of-season gain to this specific roster weighted toward the playoffs, FAAB ranges, and streamer lists.",
+      "Leakage control is structural. Features attach to future rows by a backward as-of join on the day after each game, so a target game cannot enter its own features. A test multiplies every outcome from a cutoff onward by 7 and fails if any earlier feature moves.",
+      "The scoring engine reconciles to Sleeper's own 2025 stat lines on 99.85% of player-weeks, and the brief refuses to print a lineup that fails an independent legality check.",
+      "It only reads. It never submits a roster move, and injury tags are week-aware: while last week's games are still unfinished, an Out tag describes last week and gets flagged rather than applied.",
+    ],
+    outcomes: [
+      "Measured on the 2025 holdout: 56.2% on close start/sit calls against 55.9% for Sleeper and 51.8% for recent form, and 120.9 lineup points per week on synthetic rosters against 120.7 and 118.0. That is roughly 3 points a week over trusting recent box scores, and a fraction of a point over consensus.",
+      "80% prediction intervals covered 78 to 82% of actual outcomes across all six positions.",
+      "Runs three times a week in season and logs every forecast to a prospective ledger before kickoff, so the live record will eventually be checkable rather than remembered.",
+      "Honest limits, stated in the report: rest-of-season values and FAAB bids are heuristics, win probabilities are unverified until the ledger accumulates, and the 2025 holdout was looked at twice rather than once.",
+    ],
+    evidence: [
+      { label: "Source code", url: GH + "/FantasyFootballModel", kind: "code", primary: true },
+      { label: "Backtest report, with ablations and limitations", url: GH + "/FantasyFootballModel/blob/main/reports/backtest.md", kind: "doc", primary: true },
+    ],
+  },
+  {
     id: "tutorial-forks",
     cover: "code",
     title: "PPBDS tutorial and curriculum repositories",
@@ -421,18 +468,6 @@ const ENTRIES = [
       { label: "PPBDS/vscode.tutorials", url: "https://github.com/PPBDS/vscode.tutorials", kind: "code" },
       { label: "PPBDS/bootcamp", url: "https://github.com/PPBDS/bootcamp", kind: "code" },
     ],
-  },
-  {
-    id: "fantasy-football",
-    cover: "sigmoid",
-    title: "Fantasy Football Optimizer",
-    category: "datasci",
-    status: "Private code",
-    privateCode: true,
-    summary: "R scripts that optimize fantasy drafts from projected points. Built because I have followed the Seahawks since 2018.",
-    tech: ["R"],
-    details: [],
-    evidence: [{ label: "Repository is private", kind: "note" }],
   },
   {
     id: "tsa-geospatial",
@@ -519,7 +554,7 @@ const ENTRIES = [
   },
 ];
 
-const FEATURED_ORDER = ["stringmap", "grasp-benchmark", "trackmyshuttle", "kane-ppbds", "launchpad", "wharton"];
+const FEATURED_ORDER = ["stringmap", "grasp-benchmark", "fourth-down", "trackmyshuttle", "kane-ppbds", "launchpad", "wharton"];
 
 const SKILLS = [
   { area: "Languages", items: ["Python", "R", "Java", "JavaScript", "TypeScript", "Swift", "C++", "Arduino C++", "SQL", "HTML/CSS"] },
@@ -527,7 +562,7 @@ const SKILLS = [
   { area: "Backend and data", items: ["Node.js", "Express", "PostgreSQL", "Supabase", "Airtable"] },
   { area: "APIs and operations", items: ["Gmail", "OAuth", "FedEx", "HubSpot", "Make", "Clerk", "Mapbox", "Webhooks"] },
   { area: "AI and computer vision", items: ["Claude API", "OpenRouter / Gemini", "CoreML", "YOLO", "ResNet", "MLX Whisper"] },
-  { area: "Data science", items: ["tidymodels", "Regression", "Cross-validation", "Bayesian modeling", "Causal inference", "Automated tests"] },
+  { area: "Data science", items: ["tidymodels", "CatBoost", "Regression", "Cross-validation", "Bayesian modeling", "Causal inference", "Integer programming", "Bootstrap confidence intervals", "Automated tests"] },
   { area: "Robotics and hardware", items: ["PROS V5", "LemLib", "Arduino Mega", "FSRs", "Piezo sensors", "Servos", "CAD", "3D printing"] },
   { area: "Tools", items: ["Git/GitHub", "VS Code", "Positron", "Replit", "Vercel", "OpenSCAD", "FFmpeg", "LaTeX"] },
 ];
