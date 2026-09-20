@@ -349,3 +349,20 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 @keyframes bar-grow { from { transform: scaleX(0); } }
 @media (max-width: 560px) { .bar { grid-template-columns: 1fr 56px; } .bar span { grid-column: 1 / -1; } }
 @media (prefers-reduced-motion: reduce) { .bar u { animation: none; } }
+
+/* ---------- links that look like links ---------- */
+.card .go, .card a.ext, .row a.ev, .evlist a, .block a {
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  transition: text-decoration-color 0.15s, background 0.15s;
+}
+.card .go:hover, .card a.ext:hover, .row a.ev:hover, .evlist a:hover, .block a:hover { text-decoration-color: currentColor; text-decoration-thickness: 2px; }
+.card a.ext, .row a.ev { font-weight: 500; font-size: 13px; padding: 3px 2px; }
+.card .go { font-weight: 600; }
+.card .go span, .row .arr { display: inline-block; transition: transform 0.2s; }
+.card:hover .go span { transform: translateX(3px); }
+.row .arr { color: var(--blue); opacity: 0; transform: translateX(-4px); }
+.row:hover .arr { opacity: 1; transform: none; }
+.row:hover .t { color: var(--blue); }
+.row { cursor: pointer; }
+.phead .btns { margin-top: 26px; }

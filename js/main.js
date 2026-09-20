@@ -31,7 +31,7 @@
     const hay = [e.title, e.org, e.role, e.summary, e.status, ...(e.tech || [])].join(" ").toLowerCase();
     const k = link && KIND[link.kind];
     return `<div class="row" data-cat="${e.category} ${(e.alsoIn || []).join(" ")}" data-hay="${esc(hay)}">
-      <div><a class="t" href="project.html?id=${e.id}">${esc(e.title)}</a><div class="c">${esc(CATEGORIES[e.category])}</div></div>
+      <div><a class="t" href="project.html?id=${e.id}">${esc(e.title)} <span class="arr" aria-hidden="true">→</span></a><div class="c">${esc(CATEGORIES[e.category])}</div></div>
       <div class="s">${esc(e.summary)}</div>
       <span class="stt ${statusClass(e.status)}">${esc((e.status || "").toLowerCase())}</span>
       ${k ? `<a class="ev ${k.cls}" href="${link.url}" ${extAttrs(link.url)}>${k.short} ↗</a>` : `<span class="ev"></span>`}

@@ -18,6 +18,12 @@
         ${x.url ? `<a href="${x.url}" ${extAttrs(x.url)}>${esc(x.label)}</a>` : `<span>${esc(x.label)}</span>`}</li>`).join("")}</ul>`
     : `<p class="none">Nothing public to link yet. Email me and I can share more.</p>`;
 
+  // The main evidence links also sit in the header as buttons, so they are hard to miss.
+  const verbs = { paper: "Read the paper (PDF)", code: "View the code on GitHub", live: "Open the live site", pr: "See the pull requests", doc: "See the evidence" };
+  const seen = new Set();
+  const main = (e.evidence || []).filter((x) => x.url && /^(https?:|assets\/)/.test(x.url) && !seen.has(x.kind) && seen.add(x.kind)).slice(0, 2);
+  const actions = main.length ? `<div class="btns">${main.map((x, i) => `<a class="btn ${i ? "ghost" : "primary"}" href="${x.url}" ${extAttrs(x.url)}>${verbs[x.kind] || esc(x.label)} ↗</a>`).join("")}</div>` : "";
+
   const others = ENTRIES.filter((x) => x.category === e.category && x.id !== e.id).slice(0, 4);
 
   root.innerHTML = `
@@ -26,6 +32,7 @@
       <h1>${esc(e.title)}</h1>
       <div class="meta">${metaLine(e)}</div>
       <p class="sum">${esc(e.summary)}</p>
+      ${actions}
     </div></div>
     <div class="wrap pbody">
       <div class="main">

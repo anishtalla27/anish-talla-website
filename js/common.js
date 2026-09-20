@@ -40,7 +40,7 @@ function cardHTML(e, i, big) {
     <div class="meta">${metaLine(e)}</div>
     <p class="sum">${esc(e.summary)}</p>
     ${stack(e.tech, big ? 8 : 5)}
-    <div class="more"><a class="go" href="project.html?id=${e.id}" aria-label="Read more about ${esc(e.title)}">Read more</a>${k ? `<a class="ext ${k.cls}" href="${link.url}" ${extAttrs(link.url)}>${k.card} ↗</a>` : ""}</div>
+    <div class="more"><a class="go" href="project.html?id=${e.id}" aria-label="Read more about ${esc(e.title)}">Read more <span aria-hidden="true">→</span></a>${k ? `<a class="ext ${k.cls}" href="${link.url}" ${extAttrs(link.url)}>${k.card} ↗</a>` : ""}</div>
   </article>`;
 }
 
