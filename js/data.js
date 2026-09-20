@@ -335,7 +335,7 @@ const ENTRIES = [
       "Metrics: precision, recall, F1, false triggers, recovery success, response time, and damage rate.",
       "Influences include Romano et al., Calandra et al., and Van Wyk and Falco.",
     ],
-    evidence: [{ label: "Research proposal and methods: draft available on request.", kind: "note" }],
+    evidence: [{ label: "Read the design report: slip detection (PDF)", url: "assets/papers/adaptive-gripper.pdf", kind: "paper" }],
   },
   {
     id: "near-memory",
