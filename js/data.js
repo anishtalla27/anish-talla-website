@@ -65,7 +65,7 @@ const ENTRIES = [
       { name: "Hardware", text: "Assembled and soldered GPS kits alongside the operations team." },
     ],
     outcomes: [
-      "Partner platform reported in use by 60+ corporate partners (self-reported).",
+      "Partner platform in use by 60+ corporate partners.",
       "Internal tools used across operations, support, and marketing teams.",
     ],
     evidence: [
@@ -78,7 +78,7 @@ const ENTRIES = [
     title: "Data Science with Dr. David Kane",
     category: "experience",
     alsoIn: ["datasci"],
-    org: "PPBDS / Dr. David Kane",
+    org: "PPBDS",
     role: "Head Teaching Fellow and Data Science Intern",
     dates: "2025 to present",
     status: "Ongoing",
@@ -97,7 +97,7 @@ const ENTRIES = [
       "Acknowledged in the online textbook, the Preceptor's Primer for Bayesian Data Science.",
     ],
     outcomes: [
-      "150+ students across three countries (self-reported, cumulative).",
+      "150+ students across three countries.",
       "Coordinated a team of 6 to 8 teaching fellows.",
     ],
     evidence: [
@@ -126,7 +126,7 @@ const ENTRIES = [
       "Mentored students in CAD, 3D printing, filament selection, and web development.",
       "Working with kids who run real lemonade-stand-scale businesses shaped LaunchPad's Pricing Lab and feedback tools.",
     ],
-    outcomes: ["10+ students mentored individually (self-reported).", "Platform audience of 40+ young entrepreneurs (self-reported, a separate count)."],
+    outcomes: ["10+ students mentored individually.", "Platform audience of 40+ young entrepreneurs."],
     evidence: [{ label: "LaunchPad project page", url: "project.html?id=launchpad", kind: "doc" }],
   },
   {
@@ -193,7 +193,7 @@ const ENTRIES = [
       "AI coach gives feedback on product ideas, and a roughly 12-week simulation lets students test decisions.",
       "Explored running a local model in the browser (WebLLM) with a hosted fallback and rule-based behavior when no API is available.",
     ],
-    outcomes: ["Platform audience of 40+ young entrepreneurs (self-reported)."],
+    outcomes: ["Platform audience of 40+ young entrepreneurs."],
     evidence: [
       { label: "Live site", url: "https://www.launchpad143.com/", kind: "live" },
       { label: "Source code", url: GH + "/LaunchPad", kind: "code" },
@@ -301,7 +301,7 @@ const ENTRIES = [
   // ---------------------------------------------------------------- RESEARCH
   {
     id: "grasp-benchmark",
-    cover: "gripper",
+    cover: "grasprect",
     title: "Benchmarking Grasp Prediction",
     category: "research",
     role: "Sole author",
@@ -377,7 +377,7 @@ const ENTRIES = [
   },
   {
     id: "beaverworks",
-    cover: "route",
+    cover: "lane",
     title: "MIT Beaver Works: Autonomous Cars",
     category: "research",
     dates: "Approx. March to May 2024",

@@ -31,8 +31,8 @@
     return `<a class="row" href="project.html?id=${e.id}" data-cat="${e.category} ${(e.alsoIn || []).join(" ")}" data-hay="${esc(hay)}">
       <div><div class="t">${esc(e.title)}</div><div class="c">${esc(CATEGORIES[e.category])}</div></div>
       <div class="s">${esc(e.summary)}</div>
-      ${chip(e.status)}
-      <span class="ev">${link ? esc({ code: "Code", pr: "PRs", live: "Live", doc: "Evidence" }[link.kind] || "Link") + " ↗" : e.privateCode ? "Private" : ""}</span>
+      <span class="stt">${esc((e.status || "").toLowerCase())}</span>
+      <span class="ev">${link ? esc({ code: "code", pr: "pull requests", live: "live site", doc: "evidence" }[link.kind] || "link") : e.privateCode ? "private" : ""}</span>
     </a>`;
   }).join("") + `<div class="empty" hidden>No entries match.</div>`;
 
@@ -59,9 +59,7 @@
   $("#idx-search").addEventListener("input", (ev) => { q = ev.target.value.trim().toLowerCase(); apply(); });
 
   // skills
-  $("#skills-grid").innerHTML = SKILLS.map((s, i) => `
-    <div class="card reveal" style="--d:${(i % 3) * 70}ms"><h4>${esc(s.area)}</h4>
-    <div class="tags">${s.items.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div></div>`).join("");
+  $("#skills-grid").innerHTML = SKILLS.map((s) => `<div class="reveal"><dt>${esc(s.area)}</dt><dd>${s.items.map(esc).join(", ")}</dd></div>`).join("");
 
   // nav state
   const nav = $("#nav");

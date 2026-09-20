@@ -103,6 +103,26 @@
         <g class="cv-head"><rect x="146" y="14" width="28" height="16" rx="3" fill="${N}"/><path d="M154,30 L166,30 L160,40 Z" fill="${A}"/></g>
         <line x1="70" x2="250" y1="14" y2="14" stroke="${L}" stroke-width="3"/>`;
     },
+    grasprect() {
+      // camera frame, an object, candidate grasp rectangles, and the chosen one
+      const cands = [[-28, 0.15], [24, 0.5], [62, 0.85]];
+      return `
+        <rect x="70" y="12" width="180" height="108" rx="4" fill="#fff" stroke="${L}" stroke-width="2"/>
+        <path d="M120,84 C112,58 136,36 164,40 S214,58 204,84 S132,104 120,84 Z" fill="${S}" stroke="${N}" stroke-width="2"/>
+        ${cands.map((c) => `<rect class="cv-pop" style="animation-delay:${c[1]}s" x="128" y="56" width="64" height="20" fill="none" stroke="${L}" stroke-width="2" stroke-dasharray="4 3" transform="rotate(${c[0]} 160 66)"/>`).join("")}
+        <g class="cv-pop" style="animation-delay:1.4s"><rect x="126" y="55" width="68" height="22" fill="none" stroke="${B}" stroke-width="2.5" transform="rotate(-12 160 66)"/>
+        <circle cx="160" cy="66" r="3" fill="${B}"/></g>
+        <path d="M70,30 V12 H88 M232,12 H250 V30 M250,102 V120 H232 M88,120 H70 V102" fill="none" stroke="${N}" stroke-width="2.5"/>`;
+    },
+    lane() {
+      return `
+        <path d="M110,126 L146,10 H174 L210,126 Z" fill="${S}"/>
+        <path d="M110,126 L146,10 M210,126 L174,10" stroke="${N}" stroke-width="2.5" fill="none"/>
+        <line class="cv-dash" x1="160" y1="126" x2="160" y2="10" stroke="${B}" stroke-width="3" stroke-dasharray="12 10"/>
+        <rect x="149" y="84" width="22" height="30" rx="5" fill="${N}"/>
+        <path class="cv-ping" d="M136,80 Q160,58 184,80" fill="none" stroke="${A}" stroke-width="2"/>
+        <path d="M140,80 Q160,64 180,80" fill="none" stroke="${A}" stroke-width="2"/>`;
+    },
     teach() {
       return `
         <rect x="60" y="16" width="200" height="76" rx="8" fill="${N}"/>

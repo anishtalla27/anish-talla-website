@@ -13,9 +13,9 @@
   const para = (t) => (t ? `<p>${esc(t)}</p>` : "");
 
   const evidence = (e.evidence || []).length
-    ? `<ul class="evlist">${e.evidence.map((x) => `<li><span class="k ${x.kind === "note" ? "note" : ""}">${esc(x.kind === "pr" ? "PR" : x.kind)}</span>
+    ? `<ul class="evlist">${e.evidence.map((x) => `<li><span class="k">${esc({ code: "code", pr: "pr", live: "live", doc: "doc", note: "note" }[x.kind] || "")}</span>
         ${x.url ? `<a href="${x.url}" ${x.url.startsWith("http") ? 'target="_blank" rel="noopener"' : ""}>${esc(x.label)}</a>` : `<span>${esc(x.label)}</span>`}</li>`).join("")}</ul>`
-    : `<p class="meta" style="color:var(--muted);font-size:14.5px">No public link yet. Ask me and I can share more.</p>`;
+    : `<p class="none">Nothing public to link yet. Email me and I can share more.</p>`;
 
   const others = ENTRIES.filter((x) => x.category === e.category && x.id !== e.id).slice(0, 4);
 
@@ -23,7 +23,7 @@
     <div class="phead"><div class="wrap">
       <a class="back" href="index.html#${e.category === "project" ? "projects" : e.category === "award" ? "awards" : e.category}">← ${esc(CATEGORIES[e.category])}</a>
       <h1>${esc(e.title)}</h1>
-      <div class="meta">${chip(e.status)}<span>${metaLine(e)}</span></div>
+      <div class="meta">${metaLine(e)}</div>
       <p class="sum">${esc(e.summary)}</p>
     </div></div>
     <div class="wrap pbody">
@@ -38,7 +38,7 @@
       </div>
       <aside class="side">
         <div class="card reveal"><h4>Evidence</h4>${evidence}</div>
-        ${e.tech && e.tech.length ? `<div class="card reveal"><h4>Technologies</h4><div class="tags">${e.tech.map((t) => `<span class="tag">${esc(t)}</span>`).join("")}</div></div>` : ""}
+        ${e.tech && e.tech.length ? `<div class="card reveal"><h4>Technologies</h4>${stack(e.tech)}</div>` : ""}
         ${others.length ? `<div class="card reveal"><h4>More in ${esc(CATEGORIES[e.category])}</h4><ul class="evlist">${others.map((o) => `<li><a href="project.html?id=${o.id}">${esc(o.title)}</a></li>`).join("")}</ul></div>` : ""}
       </aside>
     </div>`;
