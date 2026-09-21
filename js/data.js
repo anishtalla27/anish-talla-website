@@ -591,7 +591,6 @@ const ACADEMICS = [
   { area: "GPA", items: ["4.62 weighted"] },
   { area: "Class standing", items: ["Summa cum laude (top 5%)"] },
   { area: "Program", items: ["Academies of Loudoun, Academy of Engineering & Technology, engineering pathway"] },
-  { area: "SAT", items: ["1510, with 780 in Math"] },
   { area: "Coursework", items: ["14 AP classes"] },
 ];
 
