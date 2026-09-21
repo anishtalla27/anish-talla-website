@@ -63,6 +63,7 @@
 
   // skills
   $("#skills-grid").innerHTML = SKILLS.map((s) => `<div class="reveal"><dt>${esc(s.area)}</dt><dd>${s.items.map(esc).join(", ")}</dd></div>`).join("");
+  $("#academics-grid").innerHTML = ACADEMICS.map((s) => `<div class="reveal"><dt>${esc(s.area)}</dt><dd>${s.items.map(esc).join(", ")}</dd></div>`).join("");
 
   // nav state
   const nav = $("#nav");

@@ -9,7 +9,7 @@ const PROFILE = {
   name: "Anish Talla",
   tagline: "High school engineering student building software and studying robotic systems.",
   intro:
-    "My work includes an iOS guitar app, operations tools for TrackMyShuttle, and research on robotic grasping. I also contribute to open-source data science education with Dr. David Kane, teach programming, and play classical and jazz guitar.",
+    "At TrackMyShuttle I build the TypeScript and PostgreSQL tools that keep company operations in sync. My research benchmarks rule-based vision, a neural network, and GPT-4o on the same robotic grasp-prediction test. I contribute to Dr. David Kane's open-source data science curriculum and lead his teaching fellows, mentor young business owners at LittleCEOs, and play classical and jazz guitar.",
   school: "Lightridge High School and the Academy of Engineering & Technology (Academies of Loudoun), Class of 2027",
   github: GH,
   email: "anish.talla99@gmail.com",
@@ -585,6 +585,15 @@ const ENTRIES = [
 ];
 
 const FEATURED_ORDER = ["stringmap", "grasp-benchmark", "fourth-down", "trackmyshuttle", "kane-ppbds", "launchpad", "wharton"];
+
+const ACADEMICS = [
+  { area: "SAT", items: ["1510, with 780 in Math"] },
+  { area: "ACT", items: ["35 composite: 36 Math, 36 English, 33 Reading"] },
+  { area: "GPA", items: ["4.62 weighted"] },
+  { area: "Class standing", items: ["Summa cum laude (top 5%)"] },
+  { area: "Program", items: ["Academies of Loudoun, Academy of Engineering & Technology, engineering pathway"] },
+  { area: "Coursework", items: ["14 AP classes"] },
+];
 
 const SKILLS = [
   { area: "Languages", items: ["Python", "R", "Java", "JavaScript", "TypeScript", "Swift", "C++", "Arduino C++", "SQL", "HTML/CSS"] },
