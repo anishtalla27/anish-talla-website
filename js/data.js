@@ -361,7 +361,7 @@ const ENTRIES = [
       "Used a MacBook Air with an M4 chip and 16 GB of unified memory. Benchmarked four Qwen2.5 model sizes, from 0.5B to 7B, across up to seven weight formats, with GPU and CPU runs, thread scaling, context lengths, and batch sizes.",
       "Compared measured decode speed with a bandwidth-over-bytes baseline and fitted latency models on the 0.5B and 3B models. The 1.5B configurations were held out from fitting; the 7B configurations provided a separate blind test.",
       "Projected performance using published parameters for commercial processing-in-memory devices. These are analytical projections, not measurements on PIM hardware.",
-      "The repository includes raw measurements, analysis scripts, figures, paper source, and the downloadable manuscript."
+      "The repository includes raw measurements (including the discarded runs), analysis scripts, figures, paper source, and two rounds of critical review. The manuscript is linked above."
     ],
     "outcomes": [
       "16-bit decode reached 83 to 95% of measured memory bandwidth divided by bytes read per token.",
