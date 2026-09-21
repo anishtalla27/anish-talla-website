@@ -587,11 +587,11 @@ const ENTRIES = [
 const FEATURED_ORDER = ["stringmap", "grasp-benchmark", "fourth-down", "trackmyshuttle", "kane-ppbds", "launchpad", "wharton"];
 
 const ACADEMICS = [
-  { area: "SAT", items: ["1510, with 780 in Math"] },
   { area: "ACT", items: ["35 composite: 36 Math, 36 English, 33 Reading"] },
   { area: "GPA", items: ["4.62 weighted"] },
   { area: "Class standing", items: ["Summa cum laude (top 5%)"] },
   { area: "Program", items: ["Academies of Loudoun, Academy of Engineering & Technology, engineering pathway"] },
+  { area: "SAT", items: ["1510, with 780 in Math"] },
   { area: "Coursework", items: ["14 AP classes"] },
 ];
 
