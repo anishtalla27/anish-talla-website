@@ -338,17 +338,51 @@ const ENTRIES = [
     evidence: [{ label: "Read the design report: slip detection (PDF)", url: "assets/papers/adaptive-gripper.pdf", kind: "paper" }],
   },
   {
-    id: "near-memory",
-    cover: "chipset",
-    title: "Near-Memory Computing",
-    category: "research",
-    org: "Academy of Engineering & Technology",
-    status: "In progress",
-    summary:
-      "Early-stage research into the Von Neumann bottleneck: why memory bandwidth limits AI workloads and how near-memory computing addresses it.",
-    tech: ["Computer architecture", "AI hardware"],
-    details: ["This connects to what I want to study: AI hardware efficiency."],
-    evidence: [{ label: "Research write-up: draft available on request.", kind: "note" }],
+    "id": "near-memory",
+    "cover": "chipset",
+    "title": "Where the Bytes Go: The von Neumann Bottleneck",
+    "category": "research",
+    "role": "Independent student researcher",
+    "dates": "2026",
+    "status": "Completed",
+    "summary": "Measured how memory bandwidth limits on-device language-model inference across 23 configurations, then modeled what processing-in-memory hardware could change.",
+    "problem": "Generating a token requires reading the model weights from memory. How closely does memory bandwidth predict the time that takes, and would computing inside memory still help when the host already uses 4-bit weights?",
+    "contribution": "Chose the research question and experimental approach, provided and operated the laptop, and reviewed the benchmark results, analytical models, and manuscript.",
+    "tech": [
+      "Python",
+      "llama.cpp",
+      "Qwen2.5",
+      "Metal",
+      "Quantization",
+      "Roofline modeling",
+      "Processing-in-memory"
+    ],
+    "details": [
+      "Used a MacBook Air with an M4 chip and 16 GB of unified memory. Benchmarked four Qwen2.5 model sizes, from 0.5B to 7B, across up to seven weight formats, with GPU and CPU runs, thread scaling, context lengths, and batch sizes.",
+      "Compared measured decode speed with a bandwidth-over-bytes baseline and fitted latency models on the 0.5B and 3B models. The 1.5B configurations were held out from fitting; the 7B configurations provided a separate blind test.",
+      "Projected performance using published parameters for commercial processing-in-memory devices. These are analytical projections, not measurements on PIM hardware.",
+      "The repository includes raw measurements, analysis scripts, figures, paper source, and the downloadable manuscript."
+    ],
+    "outcomes": [
+      "16-bit decode reached 83 to 95% of measured memory bandwidth divided by bytes read per token.",
+      "Changing weight format altered decode speed by up to 3.0 times, while prefill changed by at most 17%.",
+      "A projected 16-bit PIM device with four times the internal bandwidth gained only 1.2 to 1.4 times over the 4-bit host baseline.",
+      "Results come from one laptop, one software stack, and one model family. Model quality and power consumption were not measured."
+    ],
+    "evidence": [
+      {
+        "label": "Read the paper (PDF)",
+        "url": "assets/papers/near-memory.pdf",
+        "kind": "paper",
+        "primary": true
+      },
+      {
+        "label": "Code, data, and methodology on GitHub",
+        "url": "https://github.com/anishtalla27/Von-Neuman-Bottleneck-Research",
+        "kind": "code",
+        "primary": true
+      }
+    ]
   },
   {
     id: "vex",
